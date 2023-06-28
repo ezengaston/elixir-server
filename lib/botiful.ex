@@ -3,16 +3,14 @@ defmodule Botiful do
   Documentation for `Botiful`.
   """
 
-  @doc """
-  Hello world.
+  use Plug.Router
 
-  ## Examples
+  plug(:match)
+  plug(:dispatch)
 
-      iex> Botiful.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  get "/hello" do
+    send_resp(conn, :ok, "world")
   end
+
+  match(_, do: send_resp(conn, :not_found, "not_found"))
 end

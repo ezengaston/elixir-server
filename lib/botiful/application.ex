@@ -8,6 +8,7 @@ defmodule Botiful.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      {Plug.Cowboy, scheme: :http, plug: Botiful, options: [port: 8080]}
       # Starts a worker by calling: Botiful.Worker.start_link(arg)
       # {Botiful.Worker, arg}
     ]
